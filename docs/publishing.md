@@ -56,6 +56,11 @@ Verify:
 npm view @knufle/msw-trpc@3.0.0 version --registry=https://registry.npmjs.org
 ```
 
+The registry may return `E404` for several minutes after npm accepts a new upload.
+If publishing printed `+ @knufle/msw-trpc@3.0.0` and a processing notice, do not publish
+that version again. Wait and repeat only the `npm view` verification. Configure the
+trusted publisher once the package page becomes available.
+
 You can run `npm logout --registry=https://registry.npmjs.org` after bootstrapping.
 No npm credentials belong in this repository.
 
