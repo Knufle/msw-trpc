@@ -29,16 +29,19 @@ Use Node.js 24 LTS and npm >=11.5.1 (Node >=22.14.0 is required for trusted publ
 From a checkout of this fork, after its checks pass:
 
 ```bash
-npm login --registry=https://registry.npmjs.org --auth-type=web
+npm login --registry=https://registry.npmjs.org --auth-type=web --browser=false
 npm whoami --registry=https://registry.npmjs.org
 pnpm install --frozen-lockfile
 pnpm --filter @knufle/msw-trpc build
 node scripts/check-package.mjs
 cd packages/msw-trpc
-npm publish --access public --registry=https://registry.npmjs.org
+npm publish --access public --registry=https://registry.npmjs.org --browser=false
 ```
 
-Complete npm's browser authentication/2FA prompts yourself. If you own `knufle` as an
+Copy the login URL npm prints into your browser and leave the terminal running while you
+authenticate. Automatic browser launching is disabled to avoid WSL browser detection errors.
+Complete npm's browser authentication/2FA prompts yourself, including any link printed during
+publishing. If you own `knufle` as an
 organization instead of a personal username, confirm your logged-in account has publishing
 rights in that organization.
 
