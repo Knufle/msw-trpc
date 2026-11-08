@@ -44,11 +44,21 @@ try {
       '-e',
       `
         import assert from 'node:assert/strict';
+        import { readFileSync } from 'node:fs';
         import { createTRPCMsw } from '@knufle/msw-trpc';
         import { httpLink } from '@knufle/msw-trpc/links';
         import { getResponse, RequestHandler } from 'msw';
         import { setupServer } from 'msw/node';
         import { TRPCError } from '@trpc/server';
+        const readme = readFileSync('./node_modules/@knufle/msw-trpc/README.md', 'utf8');
+        const urls = [
+          ...readme.matchAll(/(?:src|href)="([^"]+)"/g),
+          ...readme.matchAll(/\\]\\(([^)]+)\\)/g),
+        ];
+        assert.ok(urls.length > 0, 'Published README must contain links');
+        for (const [, url] of urls) {
+          assert.match(url, /^https:\\/\\//, 'Published README URLs must be absolute: ' + url);
+        }
         const handlers = createTRPCMsw({ links: [httpLink({ url: 'https://example.test/trpc' })] });
         const query = handlers.user.query(({ input }) => ({ id: input }));
         assert.ok(query instanceof RequestHandler, 'Handler must use the consumer MSW instance');

@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="assets/trpc-msw.png" style="height: 100px;"/>
+  <img src="https://raw.githubusercontent.com/Knufle/msw-trpc/main/assets/trpc-msw.png" style="height: 100px;"/>
   <h1>@knufle/msw-trpc</h1>
   <a href="https://www.npmjs.com/package/@knufle/msw-trpc"><img src="https://img.shields.io/npm/v/@knufle/msw-trpc.svg?style=flat&color=brightgreen" target="_blank" /></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-black" /></a>
+  <a href="https://github.com/Knufle/msw-trpc/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-black" /></a>
   <br />
   <hr />
 </div>
@@ -54,7 +54,7 @@ const server = setupServer(
 )
 ```
 
-You can find examples of how to use it in the [test-react](./packages/test-react/package.json) package or in the [test-node](./packages/test-node/package.json) package.
+You can find examples of how to use it in the [test-react](https://github.com/Knufle/msw-trpc/blob/main/packages/test-react/package.json) package or in the [test-node](https://github.com/Knufle/msw-trpc/blob/main/packages/test-node/package.json) package.
 
 ## How it works
 

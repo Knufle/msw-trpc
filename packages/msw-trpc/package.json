@@ -1,6 +1,6 @@
 {
   "name": "@knufle/msw-trpc",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Type-safe tRPC handlers for Mock Service Worker 3, forked from msw-trpc.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
