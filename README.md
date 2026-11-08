@@ -20,6 +20,10 @@ This is an MSW 3 maintenance fork of [maloguertin/msw-trpc](https://github.com/m
 originally authored by Malo Guertin. The handler API is unchanged. MSW is a peer dependency,
 so the handlers use your application's MSW installation rather than installing a second copy.
 
+README images and repository links use absolute URLs. npm resolves relative URLs against
+the package's `repository.directory`, which points to `packages/msw-trpc`, while the banner
+image lives in the repository's root `assets` directory.
+
 ## Motivation
 
 As someone who loves MSW and was already using it I wanted to keep using it instead of mocking tRPC. While it is possible to simply write the Rest handlers it felt like it would be great not to lose the full power of tRPC types in the tests.
