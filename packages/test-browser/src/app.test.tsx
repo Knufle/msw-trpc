@@ -1,5 +1,5 @@
 import { describe, expect } from 'vitest'
-import { page } from '@vitest/browser/context'
+import { page } from 'vitest/browser'
 import { render } from 'vitest-browser-react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createTRPCMsw, httpLink } from '../../msw-trpc/src/index.ts'

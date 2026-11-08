@@ -29,6 +29,6 @@
     "noFallthroughCasesInSwitch": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "types": ["@vitest/browser/matchers"]
+    "types": ["vitest/browser"]
   }
 }

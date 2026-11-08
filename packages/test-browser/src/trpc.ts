@@ -12,7 +12,12 @@ const links = [
   httpLink({
     url: `http://localhost:3000/trpc`,
     transformer: superjson,
-    fetch: (url, options) => fetch(url, { ...options, credentials: 'include' }),
+    fetch: (url, options) =>
+      fetch(url, {
+        ...options,
+        body: options?.body instanceof Uint8Array ? new Uint8Array(options.body) : options?.body,
+        credentials: 'include',
+      }),
   }),
 ]
 

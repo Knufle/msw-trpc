@@ -48,7 +48,12 @@ describe('with http link', () => {
     })
 
     test('handle mutations without input properly', async () => {
-      server.use(mswTrpc.deleteAllUsers.mutation(() => true))
+      server.use(
+        mswTrpc.deleteAllUsers.mutation(({ input }) => {
+          expect(input).toBeUndefined()
+          return true
+        })
+      )
 
       const result = await trpc.deleteAllUsers.mutate()
 

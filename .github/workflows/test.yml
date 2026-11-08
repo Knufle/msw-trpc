@@ -1,26 +1,37 @@
-name: Pull Request
+name: Tests
 
 on:
   workflow_call:
+    inputs:
+      ref:
+        required: false
+        type: string
+  push:
+    branches: [main]
   pull_request:
-    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-
-      - uses: pnpm/action-setup@v3
-
-      - run: pnpm install
-
-      - run: pnpm prettier --check .
-
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec prettier --check .
       - run: pnpm type-check
-
-      - run: pnpm test
+      - run: pnpm --filter @knufle/msw-trpc build
+      - run: pnpm --filter test-browser exec playwright install --with-deps chromium
+      - run: pnpm --filter test-node test --maxWorkers=1
+      - run: pnpm --filter test-react test --maxWorkers=1
+      - run: pnpm --filter test-browser test --maxWorkers=1
+      - run: node scripts/check-package.mjs

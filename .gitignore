@@ -3,3 +3,7 @@ node_modules
 dist
 mockServiceWorker.js
 .DS_Store
+.env
+*.tgz
+packages/msw-trpc/README.md
+packages/msw-trpc/LICENSE

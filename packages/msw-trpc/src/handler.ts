@@ -19,9 +19,9 @@ const getQueryInput = (req: Request, transformer: TRPCCombinedDataTransformer) =
 }
 
 const getMutationInput = async (req: Request, transformer: TRPCCombinedDataTransformer) => {
-  if (!req.body) return undefined
-
-  const body = await req.json()
+  const bodyText = await req.text()
+  if (bodyText.length === 0) return undefined
+  const body = JSON.parse(bodyText)
 
   return transformer.input.deserialize(body)
 }

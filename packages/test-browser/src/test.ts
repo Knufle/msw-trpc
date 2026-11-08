@@ -7,9 +7,13 @@ const worker = setupWorker()
 export const test = testBase.extend<{ worker: SetupWorker }>({
   worker: [
     async ({}, use) => {
-      await worker.start({ onUnhandledRequest: 'error' })
-      await use(worker)
-      worker.stop()
+      await worker.start({ onUnhandledFrame: 'error' })
+      try {
+        await use(worker)
+      } finally {
+        worker.resetHandlers()
+        await worker.stop()
+      }
     },
     {
       auto: true,

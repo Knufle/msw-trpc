@@ -13,7 +13,7 @@
     "undici": "7.8.0"
   },
   "devDependencies": {
-    "msw": "2.7.5",
-    "vitest": "3.1.1"
+    "msw": "3.0.3",
+    "vitest": "5.0.4"
   }
 }

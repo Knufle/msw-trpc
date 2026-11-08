@@ -1,23 +1,42 @@
 {
-  "name": "msw-trpc",
-  "version": "2.0.1",
-  "description": "tRPC API for Mock Service Worker (MSW).",
+  "name": "@knufle/msw-trpc",
+  "version": "3.0.0",
+  "description": "Type-safe tRPC handlers for Mock Service Worker 3, forked from msw-trpc.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./links": {
+      "types": "./dist/links.d.ts",
+      "import": "./dist/links.js"
+    }
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Malo Guertin",
   "license": "MIT",
   "files": [
     "dist",
-    "src"
+    "src",
+    "LICENSE"
   ],
   "scripts": {
     "build": "rimraf dist && tsc --build",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "prepack": "node ../../scripts/prepare-package.mjs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maloguertin/msw-trpc.git"
+    "url": "git+https://github.com/Knufle/msw-trpc.git",
+    "directory": "packages/msw-trpc"
   },
   "keywords": [
     "msw",
@@ -26,15 +45,18 @@
     "api"
   ],
   "bugs": {
-    "url": "https://github.com/maloguertin/msw-trpc/issues"
+    "url": "https://github.com/Knufle/msw-trpc/issues"
   },
-  "homepage": "https://github.com/maloguertin/msw-trpc#readme",
+  "homepage": "https://github.com/Knufle/msw-trpc#readme",
   "dependencies": {
-    "@trpc/client": "^11.1.0",
-    "msw": "^2.7.5"
+    "@trpc/client": "^11.1.0"
+  },
+  "devDependencies": {
+    "@trpc/server": "11.1.0",
+    "msw": "3.0.3"
   },
   "peerDependencies": {
     "@trpc/server": "^11.0.0",
-    "msw": "^2.0.0"
+    "msw": "^3.0.0"
   }
 }
